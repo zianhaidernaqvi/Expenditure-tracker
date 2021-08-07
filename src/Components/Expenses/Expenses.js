@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
+import ExpensesChart from './ExpensesChart';
 import Card from "../UI/Card";
 
 const Expenses = (props) => {
@@ -14,7 +15,11 @@ const Expenses = (props) => {
     const filteredExpenses = props.items.filter(expense => {
          return expense.date.getFullYear().toString === filteredYear;
     });
-    console.log(filteredExpenses);
+     
+    let expensesContent = <p>No Expense Found .</p>
+
+    
+    
     return (
         <div>
         <Card className="expenses">
@@ -27,8 +32,9 @@ const Expenses = (props) => {
                     amount={expense.amount}
                     date={expense.date}
                     />
+                   
                 ))}
-           
+                <ExpensesChart expenses={filteredExpenses}/>
 
         </Card>
         </div>
